@@ -1,7 +1,6 @@
 import React, { Component, Fragment } from "react";
 import TodoItem from "./todoItem";
-import { Button } from "antd";
-import { Input } from "antd";
+import { Button, Input, message } from "antd";
 import "./index.css";
 
 class TodoList extends Component {
@@ -12,7 +11,7 @@ class TodoList extends Component {
     // 定义数据
     this.state = {
       inputValue: "",
-      list: ["study React", "study Vue"],
+      list: ["学习 React", "学习 Vue"],
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,7 +25,7 @@ class TodoList extends Component {
       <Fragment>
         <div className="container">
           <label htmlFor="insertArea">输入内容：</label>
-          {/* bind绑定this */}
+
           <Input
             style={{ width: 200 }}
             id="insertArea"
@@ -35,7 +34,7 @@ class TodoList extends Component {
             onChange={this.handleInputChange}
             onKeyDown={this.handleEnterInput}
           ></Input>
-          {/* 箭头函数绑定this */}
+
           <Button type="primary" className="addBtn" onClick={this.handleBtnClick}>
             添加
           </Button>
@@ -65,6 +64,11 @@ class TodoList extends Component {
   }
 
   handleBtnClick() {
+		const value = [...this.state.inputValue]
+		if (value == "") {
+			message.warning("不能为空")
+			return false
+    }
     this.setState({
       list: [...this.state.list, this.state.inputValue],
       inputValue: "",
@@ -78,7 +82,7 @@ class TodoList extends Component {
         inputValue: "",
       });
     } else if (e.keyCode == "13" && this.state.inputValue == "") {
-      alert("不能为空");
+			message.warning("不能为空")
     }
   }
 

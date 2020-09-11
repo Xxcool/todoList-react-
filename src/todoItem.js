@@ -1,16 +1,13 @@
 import React, { Component } from "react";
-import { Button } from "antd";
-import { List } from "antd";
+import { Button, List } from "antd";
 
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    // this.handleClick = this.handleClick.bind(this);
+    this.handleClick = this.handleClick.bind(this);
   }
   render() {
-    // 子组件通过this.props.item
     const list = this.props.list;
-    console.log(list);
     return (
       <List
         size="small"

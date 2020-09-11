@@ -142,8 +142,5 @@
     "presets": [
       "react-app"
     ]
-  },
-  "devDependencies": {
-    "customize-cra": "^1.0.0"
   }
 }
