@@ -1,26 +1,46 @@
 import React, { Component } from "react";
+import { Button } from "antd";
+import { List } from "antd";
 
 class TodoItem extends Component {
   constructor(props) {
     super(props);
-    this.handleClick = this.handleClick.bind(this);
+    // this.handleClick = this.handleClick.bind(this);
   }
   render() {
-		// 子组件通过this.props.content获取值
-		const {content} = this.props
+    // 子组件通过this.props.item
+    const list = this.props.list;
+    console.log(list);
     return (
-			<li>
-				<span>{content}</span>
-				<button className="delete" onClick={this.handleClick}>删除</button>
-			</li>
-		);
-	}
-	
-	handleClick() {
-		// 调用父组件函数
-		const {deleteItem, index} = this.props
-		deleteItem(index)
-	}
+      <List
+        size="small"
+        bordered
+        dataSource={list}
+        renderItem={(item, index) => {
+          return (
+            <List.Item>
+              {item}
+              <Button
+                className="fr"
+                type="primary"
+                shape="circle"
+                size="small"
+                onClick={() => {
+                  this.handleClick(index);
+                }}
+              >X</Button>
+            </List.Item>
+          );
+        }}
+      />
+    );
+  }
+
+  handleClick(index) {
+    // 调用父组件函数
+    const { deleteItem } = this.props;
+    deleteItem(index);
+  }
 }
 
 export default TodoItem;

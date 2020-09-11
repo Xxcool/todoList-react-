@@ -1,15 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import TodoList from './todoList'
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(
-  <React.StrictMode>
-    {/* <App /> */}
-    <TodoList />
-  </React.StrictMode>,
+  <TodoList />,
   document.getElementById('root')
 );
 
